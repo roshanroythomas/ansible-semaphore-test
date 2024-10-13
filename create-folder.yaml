@@ -1,7 +1,7 @@
 ---
 - name: Create an empty folder on the target host
   hosts: all
-  become: yes   # Use this to run tasks as root (requires ansible_user: root in inventory)
+  become: true   # Use this to run tasks as root (requires ansible_user: root in inventory)
   tasks:
     - name: Create an empty directory
       file:
