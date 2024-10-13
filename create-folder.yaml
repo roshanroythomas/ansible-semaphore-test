@@ -6,7 +6,12 @@
       file:
         path: /home/rosha/test1
         state: directory
-    - name: Debug the path
+
+    - name: Check if the directory exists
       command: ls -ld /home/rosha/test1
       register: dir_output
-    - debug: var=dir_output
+      changed_when: false  # This prevents it from being counted as a change
+
+    - name: Debug the path
+      debug:
+        var: dir_output
