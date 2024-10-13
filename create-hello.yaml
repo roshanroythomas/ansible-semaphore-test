@@ -1,0 +1,8 @@
+- name: Create a text file with 'hello world'
+  hosts: all
+  become: true
+  tasks:
+    - name: Create the file with 'hello world'
+      copy:
+        dest: /home/rosha/hello.txt
+        content: "hello world"
