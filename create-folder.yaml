@@ -1,0 +1,10 @@
+---
+- name: Create an empty folder on the target host
+  hosts: all
+  become: yes   # Use this to run tasks as root (requires ansible_user: root in inventory)
+  tasks:
+    - name: Create an empty directory
+      file:
+        path: /home/rosha/test1   # Change this to your desired folder path
+        state: directory
+        mode: '0755'   # Permissions for the folder (optional)
