@@ -2,24 +2,16 @@
   hosts: all
   become: yes
   tasks:
+    - name: Check if /home/rosha exists
+      command: ls /home/rosha
+      register: dir_check
+      ignore_errors: true
+
     - name: List all files in /home/rosha
       command: ls -l /home/rosha
       register: files_list
+      when: dir_check.rc == 0  # Only run if the directory exists
 
     - name: Display the list of files
       debug:
         var: files_list.stdout_lines
-        
-- name: Check if /home/rosha exists
-  command: ls /home/rosha
-  register: dir_check
-  ignore_errors: true
-
-- name: List all files in /home/rosha
-  command: ls -l /home/rosha
-  register: files_list
-  when: dir_check.rc == 0  # Only run if the directory exists
-
-- name: Display the list of files
-  debug:
-    var: files_list.stdout_lines
